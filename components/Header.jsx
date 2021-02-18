@@ -1,4 +1,70 @@
+import { useEffect } from 'react';
+import Link from 'next/link';
+import $ from 'jquery';
+
 export default function Header () {
+
+
+
+  useEffect( () => {
+      const geo = document.querySelector('.header-form__select');
+      const adress = document.querySelectorAll('.adres');
+      const tel = document.querySelectorAll('.phone');
+      const map = document.querySelectorAll('.iframe');
+      const sity = document.querySelector('.footer-info__sity');
+    
+      geo.addEventListener('change', () => {
+    
+        const selind = geo.options.selectedIndex;
+        const txt = geo.options[selind].text;
+        const val = geo.options[selind].value;
+    
+        if (val === 'Astrakhan') {
+    
+          adress[0].classList.remove('adres--hide');
+          adress[1].classList.add('adres--hide');
+          adress[2].classList.remove('adres--hide');
+          adress[3].classList.add('adres--hide');
+          tel[0].classList.remove('phone--hide');
+          tel[1].classList.add('phone--hide');
+          tel[2].classList.remove('phone--hide');
+          tel[3].classList.add('phone--hide');
+          tel[4].classList.remove('phone--hide');
+          tel[5].classList.add('phone--hide');
+          map[0].classList.remove('iframe--hide');
+          map[1].classList.add('iframe--hide');
+          sity.innerHTML='Ваш город: Астрахань';
+
+        };
+    
+        if (val === 'Atirau') {
+    
+          adress[0].classList.add('adres--hide');
+          adress[1].classList.remove('adres--hide');
+          adress[2].classList.add('adres--hide');
+          adress[3].classList.remove('adres--hide');
+          tel[0].classList.add('phone--hide');
+          tel[1].classList.remove('phone--hide');
+          tel[2].classList.add('phone--hide');
+          tel[3].classList.remove('phone--hide');
+          tel[4].classList.add('phone--hide');
+          tel[5].classList.remove('phone--hide');
+          map[0].classList.add('iframe--hide');
+          map[1].classList.remove('iframe--hide');
+          sity.innerHTML='Ваш город: Атырау';
+          
+        };
+      });
+
+      $(document).ready(()=> {
+        $('.page-nav__btn').click(function(){
+            $('#menu-top-menu').slideToggle('slow');
+            $(this).toggleClass('active');
+        });
+    });
+    
+  }, [])
+
   return (
     <header className='page-header page-header--height-auto'>
       <div className='overlay'>
@@ -53,12 +119,12 @@ export default function Header () {
         <button className='page-nav__btn' type='button'>Меню</button>
         <div className='menu-top-menu-container'>
           <ul id='menu-top-menu' className='page-nav__list container'>
-            <li id='menu-item-27' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-27'><a href='https://panorama30.ru/' aria-current='page'>Главная</a></li>
-            <li id='menu-item-49' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-49'><a title='Ты видишь меня :)' href='https://panorama30.ru/%d0%be%d1%81%d1%82%d0%b5%d0%ba%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5/'>Остекление</a></li>
-            <li id='menu-item-29' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-29'><a href='https://panorama30.ru/%d0%b4%d0%b5%d1%80%d0%b5%d0%b2%d1%8f%d0%bd%d0%bd%d1%8b%d0%b5-%d0%be%d0%ba%d0%bd%d0%b0/'>Деревянные окна</a></li>
-            <li id='menu-item-31' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-31'><a href='https://panorama30.ru/plastikovye-okna/'>Пластиковые окна</a></li>
-            <li id='menu-item-28' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-28'><a href='https://panorama30.ru/aluminum/'>Алюминиевые конструкции</a></li>
-            <li id='menu-item-30' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-30'><a href='https://panorama30.ru/%d0%b6%d0%b0%d0%bb%d1%8e%d0%b7%d0%b8/'>Жалюзи/Рольшторы</a></li>
+            <Link href='/'><li id='menu-item-27' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-27'><a href='/' aria-current='page'>Главная</a></li></Link>
+            <Link href='/glazing'><li id='menu-item-49' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-49'><a href='/'>Остекление</a></li></Link>
+            <Link href='/wood-windows'><li id='menu-item-29' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-29'><a href='/'>Деревянные окна</a></li></Link>
+            <Link href='/plastic-windows'><li id='menu-item-31' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-31'><a href='/'>Пластиковые окна</a></li></Link>
+            <Link href='/aluminum-construction'><li id='menu-item-28' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-28'><a href='/'>Алюминиевые конструкции</a></li></Link>
+            <Link href='/jalousie'><li id='menu-item-30' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-30'><a href='/'>Жалюзи/Рольшторы</a></li></Link>
           </ul>
         </div>		
       </nav>	

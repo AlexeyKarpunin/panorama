@@ -6,7 +6,9 @@
 	margin: 20px;
 }
 
-
+.catalog__item:hover {
+  cursor: pointer;
+}
 
 
 
@@ -558,4 +560,8 @@ margin-bottom: 40px;
 
 
 
-
+@media screen and (max-width: 495px) {
+  .fix--size--22 {
+    font-size: 22px;
+  }
+}

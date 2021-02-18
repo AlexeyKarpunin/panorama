@@ -14,7 +14,7 @@ export default function ChangeWindow () {
         <p className='replace__text replace__text2'>Если Вы построили дом и его необходимо застеклить качественными окнами</p>
         <picture className='replace__img-box'>
           <source srcSet='/img/home.webp' type='image/webp' />
-          <img className='replace__img2' src='/img/home.png' alt='replace window' />	
+          <img className='replace__img2' src='/img/home.png' alt='replace window' style={{height: 'auto'}} />	
         </picture>				
       </div>
     </section>

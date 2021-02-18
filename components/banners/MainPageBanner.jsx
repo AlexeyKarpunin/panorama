@@ -1,4 +1,7 @@
+
+
 export default function MainPageBanner () {
+
   return (
     <section className='banner banner--new' data-page='Главная страница'> 
       <div className='banner__content'>
