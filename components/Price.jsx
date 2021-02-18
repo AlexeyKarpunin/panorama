@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect } from 'react'
 import InputMask from 'react-input-mask';
+import $ from 'jquery';
 
 export default function Price () {
 
@@ -150,6 +153,103 @@ export default function Price () {
         };
       });
   }, []);
+
+
+  useEffect( () => {
+    $('.form_btn').click((evt) => {
+      const phone = document.querySelector('#tel');
+      const whats = document.querySelector('#whats');
+      const vk = document.querySelector('#vk');
+      const inst = document.querySelector('#inst');
+  
+      if (phone.value || whats.value || vk.value || inst.value) {
+        // validate and process form
+        // first hide any error messages
+        $('.error').hide();
+
+        let solo = '';
+        let double = '';
+        let triple = '';
+        let tripleWithTwoStvorki = '';
+        let four = '';
+        let balcony = '';
+        let balconyWithStvorki = '';
+
+        if ($('#solo').is(':checked')) {  solo = 'да'; }
+        if ($('#double').is(':checked')) {  double = 'да'; }
+        if ($('#triple').is(':checked')) {  triple = 'да'; }
+        if ($('#tripleWithTwoStvorki').is(':checked')) {  tripleWithTwoStvorki = 'да'; }
+        if ($('#four').is(':checked')) { four = 'да'; }
+        if ($('#balcony').is(':checked')) { balcony = 'да'; }
+        if ($('#balconyWithStvorki').is(':checked')) { balconyWithStvorki = 'да'; }
+  
+        const material = $('select#material').val();
+        const profile = $('select#profile').val();
+        const glass = $('select#glass').val();
+        const color = $('select#color').val();
+        const wood = $('select#wood').val();
+        const woodProfile = $('select#woodProfile').val();
+        const alProfile = $('select#alProfile').val();
+        const alColor = $('select#alColor').val();
+        let otliv = ''
+        let otkos = ''
+        let setka = ''
+        let podokonik = ''
+  
+        if ($('#otliv').is(':checked')) {  otliv = 'да'; }
+        if ($('#otkos').is(':checked')) {  otkos = 'да'; }
+        if ($('#setka').is(':checked')) {  setka = 'да'; }
+        if ($('#podokonik').is(':checked')) {  podokonik = 'да'; }
+  
+        const montage = $('select#montage').val();
+        const size = $('textarea#size').val();
+        const communication = $('select#communication').val();
+  
+        const tel = $('input#tel').val();
+        const whats = $('input#whats').val();
+        const vk = $('input#vk').val();
+        const inst = $('input#inst').val();
+  
+        const typeBanner = $('input#type-banner').val();
+  
+        const dataString = `solo=${ solo  }&double=${  double  }&triple=${  triple  }&tripleWithTwoStvorki=${  tripleWithTwoStvorki
+         }&four=${  four  }&balcony=${  balcony  }&balconyWithStvorki=${  balconyWithStvorki
+  
+         }&material=${  material  }&profile=${  profile  }&glass=${  glass  }&color=${  color  }&wood=${  wood
+         }&woodProfile=${  woodProfile  }&alProfile=${  alProfile  }&alColor=${  alColor
+  
+         }&otliv=${  otliv  }&otkos=${  otkos  }&setka=${  setka  }&podokonik=${  podokonik
+  
+         }&montage=${  montage  }&size=${  size  }&communication=${  communication  }&tel=${  tel  }&whats=${  whats  }&vk=${  vk
+         }&inst=${  inst  }&typeBanner=${  typeBanner}`;
+        // alert (dataString);return false;
+  
+  
+  
+        $.ajax({
+          type: 'POST',
+          url: '/api/big-form',
+          data: dataString,
+          success() {
+            $('#price_form').html("<div id='message'></div>");
+            $('#message').html('<h2>Ваша заявка отправлена!</h2>')
+            .append('<p>Наш администратор свяжется с Вами<br> в ближайшее время.</p>')
+            .hide()
+            .fadeIn(1500, () => {
+              $('#message').append("<img id='checkmark' src='/img/check.png' />");
+            });
+          }
+        });
+  
+        return false;
+      } 
+        evt.preventDefault();
+        phone.classList.add('slider-price3__input--error');
+        vk.classList.add('slider-price3__input--error');
+        whats.classList.add('slider-price3__input--error');
+        inst.classList.add('slider-price3__input--error');
+    });
+  }, [])
 
   return (
     <section className='price'>

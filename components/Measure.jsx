@@ -2,53 +2,54 @@
 /* eslint-disable react/style-prop-object */
 import InputMask from 'react-input-mask';
 import $ from 'jquery';
-
-function sandForm (e) {
-  e.preventDefault()
-  $('.button').click(() => {
-    // validate and process form
-    // first hide any error messages
-    $('.error').hide();
-
-    const name = $('input#name').val();
-
-    if (name === '') {
-      $('label#name_error').show();
-      $('input#name').focus();
-      return false;
-    }
-	 
-    const phone = $('input#phone').val();
-    if (phone === '') {
-      $('label#phone_error').show();
-      $('input#phone').focus();
-      return false;
-    }
-	 
-    const banner = $('input#type-banner-measure').val();
-
-    const dataString = `name=${ name  }&phone=${  phone  }&banner=${  banner}`;
-    console.log(dataString)
-
-    $.ajax({
-      type: 'POST',
-      url: 'http://localhost:3000/process.php',
-      data: dataString,
-      success() {
-        $('#contact_form').html("<div id='message'></div>");
-        $('#message').html('<h2>Ваша заявка отправлена!</h2>')
-        .append('<p>Наш администратор свяжется с Вами<br> в ближайшее время.</p>')
-        .hide()
-        .fadeIn(1500, () => {
-          $('#message').append("<img id='checkmark' src='/img/check.png' />");
-        });
-      }
-    });
-    return false;
-  });
-}
+import { useEffect } from 'react';
 
 export default function Measure () {
+
+  useEffect( () => {
+    $('.button').click(() => {
+      // validate and process form
+      // first hide any error messages
+      $('.error').hide();
+  
+      const name = $('input#name').val();
+  
+      if (name === '') {
+        $('label#name_error').show();
+        $('input#name').focus();
+        return false;
+      }
+     
+      const phone = $('input#phone').val();
+      if (phone === '') {
+        $('label#phone_error').show();
+        $('input#phone').focus();
+        return false;
+      }
+     
+      const banner = $('input#type-banner-measure').val();
+  
+      const dataString = `name=${ name  }&phone=${  phone  }&banner=${  banner}`;
+  
+      $.ajax({
+        type: 'POST',
+        url: '/api/small-form',
+        data: dataString,
+  
+        success() {
+          $('#contact_form').html("<div id='message'></div>");
+          $('#message').html('<h2>Ваша заявка отправлена!</h2>')
+          .append('<p>Наш администратор свяжется с Вами<br> в ближайшее время.</p>')
+          .hide()
+          .fadeIn(1500, () => {
+            $('#message').append("<img id='checkmark' src='/img/check.png' />");
+          });
+        }
+      });
+      return false;
+    });
+  }, [])
+  
   return (
     <section className='measure'>
       <div className='measure__content container'>
@@ -84,7 +85,7 @@ export default function Measure () {
               Согласен с политикой конфиденциальности
             </div>
             <input className='hide-input' type='hidden' name='banner' value='new - Главная страница' id='type-banner-measure' />
-            <button onClick={sandForm} type='submit' id='submit_btn' name='submit' className='measure__btn banner__btn button'>Вызвать замерщика</button>
+            <button type='submit' id='submit_btn' name='submit' className='measure__btn banner__btn button'>Вызвать замерщика</button>
           </form>
         </div>
       </div>
