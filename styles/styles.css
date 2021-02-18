@@ -564,4 +564,12 @@ margin-bottom: 40px;
   .fix--size--22 {
     font-size: 22px;
   }
+
+  .review__gis__start__container {
+    flex-direction: column;
+  }
+
+  .review__stars__list {
+    height: 20px;
+  }
 }
