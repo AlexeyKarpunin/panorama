@@ -83,8 +83,8 @@ closeBtn.addEventListener('click', () => {
   return (
     <section className='reviews'>
       <div className='reviews__content container'>
-        <h2 className='reviews__title'>Отзывы наших заказчиков</h2>
-        <button className='reviews__pagination reviews__pagination--prew' type='button' />
+        <h2 id='review--top' className='reviews__title'>Отзывы наших заказчиков</h2>
+        <a className='reviews__pagination reviews__pagination--prew' href='#review--top'></a>
         <ul className='reviews__list'>
           <li className='reviews__item'>
             <img className='review__img' src='https://lh5.googleusercontent.com/-cVxomswolKM/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclhuqSwPmDrxIAiKh6S1QFYaEUNeg/s40-c0x00000000-cc-rp/photo.jpg' alt='avatar' />
@@ -474,7 +474,7 @@ closeBtn.addEventListener('click', () => {
             </div>
           </li>
         </ul>
-        <button className='reviews__pagination reviews__pagination--next' type='button' />
+        <a className='reviews__pagination reviews__pagination--next' href='#review--top'></a>
         <button className='review__btn_send'>оставить свой отзыв</button>
         <div className='modal__window__reviews'>
           <div className='reviews__modal__close' />
