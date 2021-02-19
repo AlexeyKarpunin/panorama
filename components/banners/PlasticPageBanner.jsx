@@ -27,6 +27,7 @@ export default function PlasticBanner () {
             <h2 className='banner__list-title fix--size--22'>Шумоизоляция</h2>
             <span>
               Снижает шум за окном более
+              {' '}
               <strong>чем в 2 раза</strong>
             </span>
           </li>
@@ -34,6 +35,7 @@ export default function PlasticBanner () {
             <h2 className='banner__list-title'>Прочность и безопасность</h2>
             <span>
               Иновационный
+              {' '}
               <strong>безопасный</strong>
               {' '}
               стеклопакет от «Панорамы»
