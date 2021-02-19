@@ -486,17 +486,17 @@ margin-bottom: 40px;
 }
 
 .yandex--logo {
-	background: url(https://panorama30.ru/wp-content/uploads/2020/11/yandex.png);
+	background: url(/img/yandex.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 .gis--logo {
-	background: url(https://panorama30.ru/wp-content/uploads/2020/11/two-gis.png);
+	background: url(/img/two-gis.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 .google--logo {
-	background: url(https://panorama30.ru/wp-content/uploads/2020/11/google.png);
+	background: url(/img/google.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 }

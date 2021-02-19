@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useEffect, useState } from 'react'
@@ -33,7 +34,7 @@ export default function Material () {
     <section className='material'>
       <div className='material__content container'>
 
-        <h2 className='material__title'>
+        <h2 className='material__title' id='material-top'>
           Материалы и
           {' '}
           <span className='banner__text_red'>технологии</span>
@@ -140,16 +141,31 @@ function MobileAccordion ({component, onClick}) {
     setTimeout( () => {setAnime(component)}, 10);
   }, [component])
 
+  useEffect( () => {
+    const anchors = document.querySelectorAll('a[href*="#"]');
+    for (const anchor of anchors) {
+        anchor.addEventListener('click', (event) => {
+            event.preventDefault();
+            const blockID = anchor.getAttribute('href');
+            document.querySelector(`${  blockID}` ).scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+        });
+    }
+  })
   return (
     <AccSection>
       <AccContent>
         <AccItem>
-          <AccBtn 
-            onClick={(e) => onClick(e, brus)} 
-            status={component === brus ? 'active' : ''}
-          >
-            Брус
-          </AccBtn>
+          <a href='#material-top'>
+            <AccBtn 
+              onClick={(e) => onClick(e, brus)} 
+              status={component === brus ? 'active' : ''}
+            >
+              Брус
+            </AccBtn>
+          </a>  
           <ControllBlock>
             <HiidenWrraper status={anime === brus ? 'active' : ''}>
               <div className='material__item'>
@@ -168,12 +184,14 @@ function MobileAccordion ({component, onClick}) {
           </ControllBlock>
         </AccItem>
         <AccItem>
-          <AccBtn 
-            onClick={(e) => onClick(e, glass)} 
-            status={component === glass ? 'active' : ''}
-          >
-            Стеклопакет
-          </AccBtn>
+          <a href='#material-top'>
+            <AccBtn 
+              onClick={(e) => onClick(e, glass)} 
+              status={component === glass ? 'active' : ''}
+            >
+              Стеклопакет
+            </AccBtn>
+          </a>
           <ControllBlock>
             <HiidenWrraper status={anime === glass ? 'active' : ''}>
               <div className='material__item-content'>
@@ -196,12 +214,14 @@ function MobileAccordion ({component, onClick}) {
           </ControllBlock>
         </AccItem>
         <AccItem>
-          <AccBtn 
-            onClick={(e) => onClick(e, forniture)} 
-            status={component === forniture ? 'active' : ''}
-          >
-            Фурнитура
-          </AccBtn>
+          <a href='#material-top'>
+            <AccBtn 
+              onClick={(e) => onClick(e, forniture)} 
+              status={component === forniture ? 'active' : ''}
+            >
+              Фурнитура
+            </AccBtn>
+          </a>
           <ControllBlock>
             <HiidenWrraper status={anime === forniture ? 'active' : ''}>
               <div className='material__item'>
@@ -220,12 +240,14 @@ function MobileAccordion ({component, onClick}) {
           </ControllBlock>
         </AccItem>
         <AccItem>
-          <AccBtn 
-            onClick={(e) => onClick(e, color)} 
-            status={component === color ? 'active' : ''}
-          >
-            Краски/Лаки
-          </AccBtn>
+          <a href='#material-top'>
+            <AccBtn 
+              onClick={(e) => onClick(e, color)} 
+              status={component === color ? 'active' : ''}
+            >
+              Краски/Лаки
+            </AccBtn>
+          </a>
           <ControllBlock>
             <HiidenWrraper status={anime === color ? 'active' : ''}>
               <div className='material__item'>
