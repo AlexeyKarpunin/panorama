@@ -470,6 +470,7 @@ margin-bottom: 40px;
 }
 .review__smth {
   color: rgb(105, 101, 100);
+  font-weight: 300;
 }
 .review__stars__list {
   margin-top: 10px;
