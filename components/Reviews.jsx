@@ -1,52 +1,22 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable react/jsx-no-target-blank */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function Revews () {
+  const [count, setCount] = useState(1);
+  const [items, setItems] = useState([]);
+  const [audios, setAudios] = useState([]);
 
  useEffect( () => {
     const reviews = document.querySelector('.reviews');
     const item = reviews.querySelectorAll('.reviews__item');
-    const btnNext = reviews.querySelector('.reviews__pagination--next');
-    const btnPrew = reviews.querySelector('.reviews__pagination--prew');
     const audio = reviews.querySelectorAll('.reviews__audio');
     const play = reviews.querySelectorAll('.reviews__btn');
   
-    let count = 1;
-  
-      btnNext.addEventListener('click', () => {
-  
-        if (count < item.length) {
-          for (let i = 0; i < item.length; i++) {
-            item[i].classList.add('reviews__item--hide');
-            if (audio[i]) {
-              audio[i].pause();
-            }
-          }
+    setItems(item);
+    setAudios(audio);
 
-          item[count].classList.remove('reviews__item--hide');
-          count += 1;
-        }
-      });
-  
-      btnPrew.addEventListener('click', () => {
-  
-        if (count > 1) {
-          for (let i = 0; i < item.length; i++) {
-            item[i].classList.add('reviews__item--hide');
-        if (audio[i]) {
-           audio[i].pause();
-            }
-          }
-  
-          item[count-2].classList.remove('reviews__item--hide');
-          count -= 1;
-        } else {
-            count = 1;
-        }
-      });
-  
     for (let i = 0; i < play.length; i++) {
   
       play[i].addEventListener('click', () => {
@@ -60,7 +30,7 @@ export default function Revews () {
       });
     }
 
-    
+ 
 // scrit for review.
 const reviewBtn = document.querySelector('.review__btn_send');
 const modalReviewWindow = document.querySelector('.modal__window__reviews');
@@ -82,11 +52,43 @@ closeBtn.addEventListener('click', () => {
 
  }, [])
 
+ function nextReviwer () {
+  if (count < items.length) {
+    for (let i = 0; i < items.length; i++) {
+      items[i].classList.add('reviews__item--hide');
+      if (audios[i]) {
+        audios[i].pause();
+      }
+    }
+
+    items[count].classList.remove('reviews__item--hide');
+    setCount(count + 1) ;
+  }
+ }
+
+ 
+
+ function prevReviwer () {
+  if (count > 1) {
+    for (let i = 0; i < items.length; i++) {
+      items[i].classList.add('reviews__item--hide');
+  if (audios[i]) {
+    audios[i].pause();
+      }
+    }
+
+    items[count-2].classList.remove('reviews__item--hide');
+    setCount(count - 1) ;
+  } else {
+    setCount(1) ;;
+  }
+ }
+
   return (
     <section className='reviews'>
       <div className='reviews__content container'>
         <h2 id='review--top' className='reviews__title'>Отзывы наших заказчиков</h2>
-        
+        <a onClick={prevReviwer} class="reviews__pagination reviews__pagination--prew--def" type="button" href='#review--top'></a>
         <ul className='reviews__list'>
           <li className='reviews__item reviews__item--google'>
             <div style={{width: '100%'}}>
@@ -121,11 +123,10 @@ closeBtn.addEventListener('click', () => {
                 <a className='link--review' target='_blank' href='https://www.google.com/search?tbm=lcl&amp;ei=UmGyX7TYDOP4qwG_3otQ&amp;q=%D0%BE%D0%BA%D0%BD%D0%B0+%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0+%D0%B0%D1%81%D1%82%D1%80%D0%B0%D1%85%D0%B0%D0%BD%D1%8C&amp;oq=%D0%BE%D0%BA%D0%BD%D0%B0+%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0+%D0%B0%D1%81%D1%82%D1%80%D0%B0%D1%85%D0%B0%D0%BD%D1%8C&amp;gs_l=psy-ab.12...0.0.0.57538.0.0.0.0.0.0.0.0..0.0....0...1c..64.psy-ab..0.0.0....0.7mGBoLNQtaAlrd=0x41a905142f5dea75:0x7b35ade4a44828c6,1,,,&amp;rlfi=hd:;si:8878193437951142086,l,CizQvtC60L3QsCDQv9Cw0L3QvtGA0LDQvNCwINCw0YHRgtGA0LDRhdCw0L3RjCIDiAEBWkkKGdC-0LrQvdCwINC_0LDQvdC-0YDQsNC80LAiLNC-0LrQvdCwINC_0LDQvdC-0YDQsNC80LAg0LDRgdGC0YDQsNGF0LDQvdGM;mv:[[46.3461937,48.069102199999996],[46.312843699999995,48.021444699999996]]'>Ссылка на отзыв</a>
               </div>
             </div>
-            <div>
-              <a className='reviews__pagination reviews__pagination--prew' href='#review--top' />
-              <a className='reviews__pagination reviews__pagination--next' href='#review--top' />
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
             </div>
-          
           </li>
 
           <li className='reviews__item reviews__item--hide'>
@@ -157,6 +158,10 @@ closeBtn.addEventListener('click', () => {
               <div className='review__link'>
                 <a className='link--review' target='_blank' href='https://go.2gis.com/djt1gk'>Ссылка на отзыв</a>
               </div>
+            </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
             </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
@@ -194,6 +199,10 @@ closeBtn.addEventListener('click', () => {
                 <a className='link--review' target='_blank' href='https://go.2gis.com/djt1gk'>Ссылка на отзыв</a>
               </div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
             <div>
@@ -226,6 +235,10 @@ closeBtn.addEventListener('click', () => {
               <div className='review__link'>
                 <a className='link--review' target='_blank' href='https://go.2gis.com/djt1gk'>Ссылка на отзыв</a>
               </div>
+            </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
             </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
@@ -260,6 +273,10 @@ closeBtn.addEventListener('click', () => {
                 <a className='link--review' target='_blank' href='https://go.2gis.com/djt1gk'>Ссылка на отзыв</a>
               </div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
             <div>
@@ -293,6 +310,10 @@ closeBtn.addEventListener('click', () => {
               <div className='review__link'>
                 <a className='link--review' target='_blank' href='https://go.2gis.com/djt1gk'>Ссылка на отзыв</a>
               </div>
+            </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
             </div>
           </li>
           <li className='reviews__item reviews__item--google reviews__item--hide'>
@@ -330,6 +351,10 @@ closeBtn.addEventListener('click', () => {
               <div className='review__link'>
                 <a className='link--review' target='_blank' href='https://yandex.ru/profile/199295468707?intent=reviews'>Ссылка на отзыв</a>
               </div>
+            </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
             </div>
           </li>
           <li className='reviews__item reviews__item--google reviews__item--hide'>
@@ -373,8 +398,12 @@ closeBtn.addEventListener('click', () => {
                 <a className='link--review' target='_blank' href='https://yandex.ru/profile/199295468707?intent=reviews'>Ссылка на отзыв</a>
               </div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
-          <li className='reviews__item reviews__item--hide'>
+          <li className='reviews__item reviews__item--google reviews__item--hide'>
             <div style={{width: '100%'}}>
               <div className='reviews__item--google--info'>
                 <div className='review__img__container__google'>
@@ -403,6 +432,10 @@ closeBtn.addEventListener('click', () => {
                 <a className='link--review' target='_blank' href='https://www.google.com/search?tbm=lcl&amp;ei=UmGyX7TYDOP4qwG_3otQ&amp;q=%D0%BE%D0%BA%D0%BD%D0%B0+%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0+%D0%B0%D1%81%D1%82%D1%80%D0%B0%D1%85%D0%B0%D0%BD%D1%8C&amp;oq=%D0%BE%D0%BA%D0%BD%D0%B0+%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0+%D0%B0%D1%81%D1%82%D1%80%D0%B0%D1%85%D0%B0%D0%BD%D1%8C&amp;gs_l=psy-ab.12...0.0.0.57538.0.0.0.0.0.0.0.0..0.0....0...1c..64.psy-ab..0.0.0....0.7mGBoLNQtaAlrd=0x41a905142f5dea75:0x7b35ade4a44828c6,1,,,&amp;rlfi=hd:;si:8878193437951142086,l,CizQvtC60L3QsCDQv9Cw0L3QvtGA0LDQvNCwINCw0YHRgtGA0LDRhdCw0L3RjCIDiAEBWkkKGdC-0LrQvdCwINC_0LDQvdC-0YDQsNC80LAiLNC-0LrQvdCwINC_0LDQvdC-0YDQsNC80LAg0LDRgdGC0YDQsNGF0LDQvdGM;mv:[[46.3461937,48.069102199999996],[46.312843699999995,48.021444699999996]]'>Ссылка на отзыв</a>
               </div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
             <audio className='reviews__audio' preload='metadata'>
@@ -412,6 +445,10 @@ closeBtn.addEventListener('click', () => {
             <div className='quote-box'>
               <span className='reviews__text'>«Сотрудники выполняют свою работу на 5 баллов. Всё приветливо. Качественно и надежно. Установка мне понравилась»</span>
               <div className='reviews__autor'>Афонин Сергей Николаевич</div>
+            </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
             </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
@@ -423,6 +460,10 @@ closeBtn.addEventListener('click', () => {
               <span className='reviews__text'>«Понравилось, как поставили окна. По работе менеджера - всё замечательно, обслуживание у вас приятное. Если в будущем будем ставить окна, то к вам обратимся.»</span>
               <div className='reviews__autor'>Донская Людмила Павловна</div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
             <audio className='reviews__audio' preload='metadata'>
@@ -433,6 +474,10 @@ closeBtn.addEventListener('click', () => {
               <span className='reviews__text'>«Работа сотрудников очень хорошая, всё понравилось. Большое спасибо менеджеру Ангелине, даже когда закончился ее рабочий день, она со мной работала.»</span>
               <div className='reviews__autor'>Гусева Галина Викторовна</div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
             <audio className='reviews__audio' preload='metadata'>
@@ -442,6 +487,10 @@ closeBtn.addEventListener('click', () => {
             <div className='quote-box'>
               <span className='reviews__text'>«Я благодарен, что мастера старались и качественно делали. Спасибо, молодцы.»</span>
               <div className='reviews__autor'>Котков Валерий Николаевич</div>
+            </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
             </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
@@ -455,6 +504,10 @@ closeBtn.addEventListener('click', () => {
               </span>
               <div className='reviews__autor'>Кузьмин Николай Иванович</div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
             <audio className='reviews__audio' preload='metadata'>
@@ -464,6 +517,10 @@ closeBtn.addEventListener('click', () => {
             <div className='quote-box'>
               <span className='reviews__text'>«Ваши окна я заказываю уже третий раз. Быстро ставят, аккуратно, качественно. Всем советую и рекомендую.»</span>
               <div className='reviews__autor'>Романова Татьяна Викторовна</div>
+            </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
             </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
@@ -475,6 +532,10 @@ closeBtn.addEventListener('click', () => {
               <span className='reviews__text'>«Окно поставили хорошо. Вот ветра были сильные, ничего не продувает, все путём, сетка работает, замки работают. Все нравится. Пацаны молодцы, хорошо работали, качественно сделали. Я наблюдал за ними. Менеджеры с нами хорошо обращались, и, главное, быстро. Спасибо, если будет необходимость, мы к вам обратимся»</span>
               <div className='reviews__autor'>Шевченко Владимир Михайлович</div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
             <audio className='reviews__audio' preload='metadata'>
@@ -484,6 +545,10 @@ closeBtn.addEventListener('click', () => {
             <div className='quote-box'>
               <span className='reviews__text'>«Отлично! Превосходно! Монтажнику Косте пять с плюсом. Чистота, порядок. Никаких претензий. Всё за собой собрали и прибрали. У нас еще проблема с проемами была. Они как-то всё это исправили. Ребята молодцы. Виктор-замерщик тоже молодец, всё рассказал, просчитал. Еще осталось два окна поменять. На будущий год у вас закажу. Я уже сестре рекомендовала вас. Очень все хорошо, спасибо большое.»</span>
               <div className='reviews__autor'>Шевченко Татьяна Ивановна</div>
+            </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
             </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
@@ -495,6 +560,10 @@ closeBtn.addEventListener('click', () => {
               <span className='reviews__text'>«Ой, спасибо. Очень хорошо ребята поставили, всё чисто и аккуратно. Мне есть с чем сравнивать. Очень ваша работа нравится. Я слышала, что в «Панораме» хорошие окна, так и есть. Молодцы ребята»</span>
               <div className='reviews__autor'>Зеленкова Марина</div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
             <audio className='reviews__audio' preload='metadata'>
@@ -505,9 +574,13 @@ closeBtn.addEventListener('click', () => {
               <span className='reviews__text'>«Всё отлично! Закончили быстро, даже раньше, чем было запланировано. Приехали - поставили. Работники хорошие, трезвые. Придраться не к чему. Менеджеры замечательные, общительные. Всё очень доступно объяснили.»</span>
               <div className='reviews__autor'>Журавлёва Оксана Олеговна</div>
             </div>
+            <div className='reviews__btn__container'>
+              <a onClick={prevReviwer} className='reviews__btn--slide reviews__pagination--prew' href='#review--top' />
+              <a onClick={nextReviwer} className='reviews__btn--slide reviews__pagination--next' href='#review--top' />
+            </div>
           </li>
         </ul>
-        
+        <a onClick={nextReviwer} class="reviews__pagination reviews__pagination--next--def" type="button" href='#review--top'></a>
         <button className='review__btn_send'>оставить свой отзыв</button>
         <div className='modal__window__reviews'>
           <div className='reviews__modal__close' />
@@ -527,3 +600,5 @@ closeBtn.addEventListener('click', () => {
     </section>
   )
 }
+
+// .reviews__item
