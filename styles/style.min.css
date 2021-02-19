@@ -439,6 +439,15 @@ margin-bottom: 40px;
   display: flex;
 }
 
+.reviews__item--google {
+  display: flex;
+  flex-direction: column;
+}
+.reviews__info--google {
+  display: flex;
+  justify-content: space-between;
+}
+
 .reviews__item {
   flex-grow: 1;
   padding-left: 30px;
@@ -499,6 +508,25 @@ margin-bottom: 40px;
     justify-content: space-between;
 }
 
+.reviews__item--google--info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.review__img__container__google {
+  display: flex;
+}
+
+.starts__container__google {
+  display: flex;
+  margin-top: 20px;
+}
+
+.review__name__wrraper__google {
+  padding: 10px 10px;
+}
+
 .review__text {
 	margin-top: 10px;
 }
@@ -506,6 +534,7 @@ margin-bottom: 40px;
 .active__star {
   display: block;
   width: 17px;
+  height: 20px;
   background: url('https://panorama30.ru/wp-content/uploads/2020/11/star.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -515,6 +544,8 @@ margin-bottom: 40px;
   height: 17px;
   font-weight: 100;
   margin-top: -2px;
+  margin-left: 5px;
+  white-space: nowrap;
 }
 
 .review__gis {
@@ -575,6 +606,19 @@ margin-bottom: 40px;
   }
   .reviews__pagination {
     border: 1px solid black;
+  }
+
+  .starts__container__google {
+    flex-direction: column;
+  }
+
+  .review__data {
+    margin-top: 5px;
+    margin-left: 0;
+  }
+
+  .reviews__item--google--info {
+    flex-direction: column;
   }
 }
 

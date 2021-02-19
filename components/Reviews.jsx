@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
+/* eslint-disable react/jsx-no-target-blank */
 import { useEffect } from 'react';
 
 
@@ -84,28 +86,32 @@ closeBtn.addEventListener('click', () => {
     <section className='reviews'>
       <div className='reviews__content container'>
         <h2 id='review--top' className='reviews__title'>Отзывы наших заказчиков</h2>
-        <a className='reviews__pagination reviews__pagination--prew' href='#review--top'></a>
+        <a className='reviews__pagination reviews__pagination--prew' href='#review--top' />
         <ul className='reviews__list'>
-          <li className='reviews__item'>
-            <img className='review__img' src='https://lh5.googleusercontent.com/-cVxomswolKM/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclhuqSwPmDrxIAiKh6S1QFYaEUNeg/s40-c0x00000000-cc-rp/photo.jpg' alt='avatar' />
-            <div className='review__content'>
-
-              <div className='logo__container'>
-                <div>
-                  <span className='review__name'>Елена Отмани</span> 
-                  {' '}
-                  <br />
+          <li className='reviews__item reviews__item--google'>
+            <div style={{width: '100%'}}>
+              <div className='reviews__item--google--info'>
+                <div className='review__img__container__google'>
+                  <img className='review__img' src='https://lh5.googleusercontent.com/-cVxomswolKM/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclhuqSwPmDrxIAiKh6S1QFYaEUNeg/s40-c0x00000000-cc-rp/photo.jpg' alt='avatar' />
+                  <div className='review__name__wrraper__google'>
+                    <div className='review__name'>Елена Отмани</div>
+                    <div className='starts__container__google'>
+                      <div className='starts__wrraper__google'>
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                      </div>
+                      <div className='review__data'>10 декабря 2020</div>
+                    </div>
+                  </div>
                 </div>
                 <div className='review__logo google--logo' />
               </div>
-              <div className='review__stars__list'>
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='review__data'>10 декабря 2020</span>
-              </div>
+              <div />
+            </div>
+            <div>
               <div className='review__text'>
                 Три года назад, заказывала в 'Панораме', окна и остекление балкона  По истечению этого времени, в очередной раз  хочу выразить свою Благодарность: Руководителю  🤲🌹🤝за слаженную, профессиональную организацию всей команды 👌👌,Менеджерам Анне и Дарье за внимание, помощь в выборе заказа, доброжелательность, это общение осталось в сердце 🤲🌹🌹🌹❤️🤲. .. Виктору,
                 Владиславу, Муслиму Сергеевичу и ВСЕМ РЕБЯТАМ которые выполняли работу по установке окон.... Такая окуратность в работе,  педантичность, пунктуальность, вежливость и КАЧЕСТВО! Так Красиво работать могут не многие!! Тем более приятно, что в нашем городе есть такая команда профессионалов👌
@@ -116,6 +122,7 @@ closeBtn.addEventListener('click', () => {
               </div>
             </div>
           </li>
+
           <li className='reviews__item reviews__item--hide'>
             <div>
               <div className='review__gis'>
@@ -283,26 +290,35 @@ closeBtn.addEventListener('click', () => {
               </div>
             </div>
           </li>
-          <li className='reviews__item reviews__item--hide'>
-            <img className='review__img' src='https://avatars.mds.yandex.net/get-yapic/30955/enc-f73a347c8e90b9fcd2b2d99d8c354dc643fc875457f685ba844270d8a92b0295/islands-200' alt='avatar' />
-            <div className='review__content'>
-              <div className='logo__container'>
-                <div>
-                  <span className='review__name'>Егор Ольховиков</span> 
-                  {' '}
-                  <br />
-                  <span className='review__smth'>Знаток города 7 уровня</span>
+          <li className='reviews__item reviews__item--google reviews__item--hide'>
+            <div style={{width: '100%'}}>
+              <div className='reviews__item--google--info'>
+                <div className='review__img__container__google'>
+                  <img className='review__img' src='https://avatars.mds.yandex.net/get-yapic/30955/enc-f73a347c8e90b9fcd2b2d99d8c354dc643fc875457f685ba844270d8a92b0295/islands-200' alt='avatar' />
+                  <div className='review__name__wrraper__google'>
+                    <div className='review__name'>
+                      Егор Ольховиков
+                      {' '}
+                      <br />
+                      <span className='review__smth'>Знаток города 7 уровня</span>
+                    </div>
+                    <div className='starts__container__google'>
+                      <div className='starts__wrraper__google'>
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                      </div>
+                      <div className='review__data'>25 февраля 2020</div>
+                    </div>
+                  </div>
                 </div>
                 <div className='review__logo yandex--logo' />
               </div>
-              <div className='review__stars__list'>
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='review__data'>25 февраля 2020</span>
-              </div>
+              <div />
+            </div>
+            <div>
               <div className='review__text'>
                 Старательная компания, приветливые сотрудники, качественная продукция
               </div>
@@ -311,32 +327,42 @@ closeBtn.addEventListener('click', () => {
               </div>
             </div>
           </li>
-          <li className='reviews__item reviews__item--hide'>
-            <img className='review__img' src='https://avatars.mds.yandex.net/get-yapic/30061/CBPUKGT2hvWhHtQ98mc1kcuDRO4-1/islands-200' alt='avatar' />
-            <div className='review__content'>
-
-              <div className='logo__container'>
-                <div>
-                  <span className='review__name'>Елена Янукевич</span> 
-                  {' '}
-                  <br />
-                  <span className='review__smth'>Знаток города 9 уровня</span>
+          <li className='reviews__item reviews__item--google reviews__item--hide'>
+            <div style={{width: '100%'}}>
+              <div className='reviews__item--google--info'>
+                <div className='review__img__container__google'>
+                  <img className='review__img' src='https://avatars.mds.yandex.net/get-yapic/30061/CBPUKGT2hvWhHtQ98mc1kcuDRO4-1/islands-200' alt='avatar' />
+                  <div className='review__name__wrraper__google'>
+                    <div className='review__name'>
+                      Елена Янукевич
+                      {' '}
+                      <br />
+                      <span className='review__smth'>Знаток города 9 уровня</span>
+                    </div>
+                    <div className='starts__container__google'>
+                      <div className='starts__wrraper__google'>
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                      </div>
+                      <div className='review__data'>16 ноября 2019</div>
+                    </div>
+                  </div>
                 </div>
                 <div className='review__logo yandex--logo' />
               </div>
-              <div className='review__stars__list'>
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='review__data'>16 ноября 2019</span>
-              </div>
+              <div />
+            </div>
+            <div>
               <div className='review__text'>
+                
                 Неоднократно заказывали окна в Панораме, всё на высшем уровне! Работники компетентны, доброжелательны! 
                 Особая благодарность личному менеджеру Анне! Все остальные тоже квалифицированно всё расскажут и объясняют, 
                 предлагают разные варианты, расчёты, делают всё очень быстро, изготовление быстрое и качественное! 
                 Все, начиная от менеджеров, замерщиков и непосредственных исполнителей ,- профессионалы своего дела! Спасибо, что вы есть!
+                            
               </div>
               <div className='review__link'>
                 <a className='link--review' target='_blank' href='https://yandex.ru/profile/199295468707?intent=reviews'>Ссылка на отзыв</a>
@@ -344,28 +370,30 @@ closeBtn.addEventListener('click', () => {
             </div>
           </li>
           <li className='reviews__item reviews__item--hide'>
-            <img className='review__img' src='https://lh3.googleusercontent.com/-RVoM265DgMc/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnGlKcvCWTPm28uXWPrikpYb3as_Q/s40-c0x00000000-cc-rp-ba4/photo.jpg' alt='avatar' />
-            <div className='review__content'>
-
-              <div className='logo__container'>
-                <div>
-                  <span className='review__name'>Александра Афанасьева</span> 
-                  {' '}
-                  <br />
+            <div style={{width: '100%'}}>
+              <div className='reviews__item--google--info'>
+                <div className='review__img__container__google'>
+                  <img className='review__img' src='https://lh3.googleusercontent.com/-RVoM265DgMc/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnGlKcvCWTPm28uXWPrikpYb3as_Q/s40-c0x00000000-cc-rp-ba4/photo.jpg' alt='avatar' />
+                  <div className='review__name__wrraper__google'>
+                    <div className='review__name'>Александра Афанасьева</div>
+                    <div className='starts__container__google'>
+                      <div className='starts__wrraper__google'>
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                        <span className='active__star' />
+                      </div>
+                      <div className='review__data'>16 ноября 2019</div>
+                    </div>
+                  </div>
                 </div>
                 <div className='review__logo google--logo' />
               </div>
-              <div className='review__stars__list'>
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='active__star' />
-                <span className='review__data'>16 ноября 2019</span>
-              </div>
-              <div className='review__text'>
-                Хорошие качественные окна.
-              </div>
+              <div />
+            </div>
+            <div>
+              <div className='review__text'>Хорошие качественные окна.</div>
               <div className='review__link'>
                 <a className='link--review' target='_blank' href='https://www.google.com/search?tbm=lcl&amp;ei=UmGyX7TYDOP4qwG_3otQ&amp;q=%D0%BE%D0%BA%D0%BD%D0%B0+%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0+%D0%B0%D1%81%D1%82%D1%80%D0%B0%D1%85%D0%B0%D0%BD%D1%8C&amp;oq=%D0%BE%D0%BA%D0%BD%D0%B0+%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0+%D0%B0%D1%81%D1%82%D1%80%D0%B0%D1%85%D0%B0%D0%BD%D1%8C&amp;gs_l=psy-ab.12...0.0.0.57538.0.0.0.0.0.0.0.0..0.0....0...1c..64.psy-ab..0.0.0....0.7mGBoLNQtaAlrd=0x41a905142f5dea75:0x7b35ade4a44828c6,1,,,&amp;rlfi=hd:;si:8878193437951142086,l,CizQvtC60L3QsCDQv9Cw0L3QvtGA0LDQvNCwINCw0YHRgtGA0LDRhdCw0L3RjCIDiAEBWkkKGdC-0LrQvdCwINC_0LDQvdC-0YDQsNC80LAiLNC-0LrQvdCwINC_0LDQvdC-0YDQsNC80LAg0LDRgdGC0YDQsNGF0LDQvdGM;mv:[[46.3461937,48.069102199999996],[46.312843699999995,48.021444699999996]]'>Ссылка на отзыв</a>
               </div>
@@ -474,7 +502,7 @@ closeBtn.addEventListener('click', () => {
             </div>
           </li>
         </ul>
-        <a className='reviews__pagination reviews__pagination--next' href='#review--top'></a>
+        <a className='reviews__pagination reviews__pagination--next' href='#review--top' />
         <button className='review__btn_send'>оставить свой отзыв</button>
         <div className='modal__window__reviews'>
           <div className='reviews__modal__close' />
