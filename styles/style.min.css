@@ -556,6 +556,17 @@ margin-bottom: 40px;
 	margin-left: 10px;
 }
 
+@media screen and (max-width: 1600px) {
+  .what-al {
+    background-position: 400px 100%;
+  }
+}
 
+
+@media screen and (max-width: 1400px) {
+  .what-al {
+    background-position: 200px 100%;
+  }
+}
 
 
