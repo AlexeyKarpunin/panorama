@@ -6,6 +6,7 @@ export default function Decision () {
           <div className='glass3__text-box2'>
             <h2 className='glass3__title'>
               У нас есть
+              {' '}
               <span>решение для&nbsp;вас</span>
             </h2>
             <p className='glass3__text'>

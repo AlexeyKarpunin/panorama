@@ -97,8 +97,8 @@ export default function Portfolio() {
   return (
     <section className='portfolio'>
       <div className='portfolio__content'>
-        <h2 className='portfolio__title'>
-          Выполненые
+        <h2 className='portfolio__title fix--size--26'>
+          Выполненные
           {' '}
           <span className='price__red'>проекты</span>
         </h2>

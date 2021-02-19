@@ -256,12 +256,14 @@ export default function Price () {
       <div className='in_block_price'>
         <h2 className='price__title'>
           Узнайте стоимость
+          {' '}
           <span className='price__red'>вашего окна</span>
         </h2>
         <div id='price_form'>
           <form className='price__content container' action='' method='post' id='price'>
             <p className='price__text'>
               Ответьте на несколько вопросов и наш менеджер сообщит Вам итоговую стоимость в течение
+              {' '}
               <b>30 минут.</b>
             </p>
             <div className='status-bar'>

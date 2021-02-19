@@ -1,9 +1,11 @@
+import styled from 'styled-components'
+
 export default function Map () {
   return (
     <section className='contacts container'>
       <div className='contacts__box'>
         <h2 className='contacts__title'>Контакты</h2>
-        <ul style={{listStyleType: 'none'}}>
+        <InfoTable>
           <li className='adres'>Ул. Н. Островского, д. 115, к. 1</li>
           <li className='adres adres--hide'>ул. Атамбаева 77А</li>
           <li className='time-work'>
@@ -21,7 +23,7 @@ export default function Map () {
             <a className='phone__number phone__number1' href='tel:87756562311'>+7 (775) 656-23-11</a>
             <a className='phone__number phone__number2' href='tel:87122763580'>+7 (7122) 76-35-80</a>
           </li>
-        </ul>
+        </InfoTable>
       </div>
       <div className='map'>
         <iframe className='iframe' src='https://yandex.ru/map-widget/v1/?um=constructor%3Ada54cba6c80409f7b537af6a7c03e7ec7ecbea45702ab714a4596d1dedd9dcfe&amp;source=constructor' width='100%' frameBorder='0' title='map' />
@@ -30,3 +32,11 @@ export default function Map () {
     </section>
   )
 }
+
+const InfoTable = styled.ul`
+   list-style-type: none;
+
+   @media (max-width: 495px) {
+     padding: 0;
+   }
+`;

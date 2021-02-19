@@ -57,6 +57,7 @@ export default function Measure () {
         <p className='measure__text'>
           Замерщик подстроится под удобное для Вас время. Замер займет не более 10 минут.
           Это
+          {' '}
           <span className='measure__text--red'>БЕСПЛАТНО</span>
           {' '}
           и ни к чему Вас не обязывает.

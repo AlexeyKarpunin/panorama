@@ -86,7 +86,7 @@ closeBtn.addEventListener('click', () => {
     <section className='reviews'>
       <div className='reviews__content container'>
         <h2 id='review--top' className='reviews__title'>Отзывы наших заказчиков</h2>
-        <a className='reviews__pagination reviews__pagination--prew' href='#review--top' />
+        
         <ul className='reviews__list'>
           <li className='reviews__item reviews__item--google'>
             <div style={{width: '100%'}}>
@@ -121,6 +121,11 @@ closeBtn.addEventListener('click', () => {
                 <a className='link--review' target='_blank' href='https://www.google.com/search?tbm=lcl&amp;ei=UmGyX7TYDOP4qwG_3otQ&amp;q=%D0%BE%D0%BA%D0%BD%D0%B0+%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0+%D0%B0%D1%81%D1%82%D1%80%D0%B0%D1%85%D0%B0%D0%BD%D1%8C&amp;oq=%D0%BE%D0%BA%D0%BD%D0%B0+%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%B0+%D0%B0%D1%81%D1%82%D1%80%D0%B0%D1%85%D0%B0%D0%BD%D1%8C&amp;gs_l=psy-ab.12...0.0.0.57538.0.0.0.0.0.0.0.0..0.0....0...1c..64.psy-ab..0.0.0....0.7mGBoLNQtaAlrd=0x41a905142f5dea75:0x7b35ade4a44828c6,1,,,&amp;rlfi=hd:;si:8878193437951142086,l,CizQvtC60L3QsCDQv9Cw0L3QvtGA0LDQvNCwINCw0YHRgtGA0LDRhdCw0L3RjCIDiAEBWkkKGdC-0LrQvdCwINC_0LDQvdC-0YDQsNC80LAiLNC-0LrQvdCwINC_0LDQvdC-0YDQsNC80LAg0LDRgdGC0YDQsNGF0LDQvdGM;mv:[[46.3461937,48.069102199999996],[46.312843699999995,48.021444699999996]]'>Ссылка на отзыв</a>
               </div>
             </div>
+            <div>
+              <a className='reviews__pagination reviews__pagination--prew' href='#review--top' />
+              <a className='reviews__pagination reviews__pagination--next' href='#review--top' />
+            </div>
+          
           </li>
 
           <li className='reviews__item reviews__item--hide'>
@@ -502,7 +507,7 @@ closeBtn.addEventListener('click', () => {
             </div>
           </li>
         </ul>
-        <a className='reviews__pagination reviews__pagination--next' href='#review--top' />
+        
         <button className='review__btn_send'>оставить свой отзыв</button>
         <div className='modal__window__reviews'>
           <div className='reviews__modal__close' />

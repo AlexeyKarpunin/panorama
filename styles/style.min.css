@@ -465,13 +465,16 @@ margin-bottom: 40px;
   padding: 10px;
   align-self: flex-start;
 }
+
 .review__name {
   font-weight: 600;
 }
+
 .review__smth {
   color: rgb(105, 101, 100);
   font-weight: 300;
 }
+
 .review__stars__list {
   margin-top: 10px;
  display: flex;

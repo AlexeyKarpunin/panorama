@@ -4,9 +4,10 @@ export default function WoooBanner () {
       <div className='banner__content'>
         <h1 className='banner__title banner__title--page2'>
           Деревянные 
-          <span className='banner__text_red'>окна</span>
+          {' '}
+          <span className='banner__text_red'>окна.</span>
           <br />
-          Экологичность природного материала приобрести в Астрахани
+          Экологичность природного материала заказать в Астрахани
         </h1>
         <h2 className='banner__text banner__text--page2'>
           надежные, удобные, практичные
