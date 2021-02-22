@@ -1,0 +1,1 @@
+export const CHANGE_CITY_ACTION = 'CHANGE FUCKING CITY';

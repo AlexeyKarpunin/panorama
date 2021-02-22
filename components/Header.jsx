@@ -1,60 +1,93 @@
-import { useEffect } from 'react';
+/* eslint-disable no-param-reassign */
+import { useEffect, useState  } from 'react';
+import { useRouter } from 'next/router'
 import Link from 'next/link';
 import $ from 'jquery';
+import { useDispatch, useSelector } from 'react-redux';
+import {changeCity} from '../redux/actions';
+
+
 
 export default function Header () {
+  const router = useRouter();
+  const city = useSelector( state => state.city.city);
+  const dispatch = useDispatch();
+  const [town, setTown] = useState('Astrakhan');
 
+  function changeAtirau () {
+    const adress = document.querySelectorAll('.adres');
+    const tel = document.querySelectorAll('.phone');
+    const map = document.querySelectorAll('.iframe');
+    const sity = document.querySelector('.footer-info__sity');
 
+    adress[0].classList.add('adres--hide');
+    adress[1].classList.remove('adres--hide');
+    adress[2].classList.add('adres--hide');
+    adress[3].classList.remove('adres--hide');
+    tel[0].classList.add('phone--hide');
+    tel[1].classList.remove('phone--hide');
+    tel[2].classList.add('phone--hide');
+    tel[3].classList.remove('phone--hide');
+    tel[4].classList.add('phone--hide');
+    tel[5].classList.remove('phone--hide');
+    map[0].classList.add('iframe--hide');
+    map[1].classList.remove('iframe--hide');
+    sity.innerHTML='Ваш город: Атырау';
+  }
+
+  function changeAstrakhan () {
+    const adress = document.querySelectorAll('.adres');
+    const tel = document.querySelectorAll('.phone');
+    const map = document.querySelectorAll('.iframe');
+    const sity = document.querySelector('.footer-info__sity');
+    
+    adress[0].classList.remove('adres--hide');
+    adress[1].classList.add('adres--hide');
+    adress[2].classList.remove('adres--hide');
+    adress[3].classList.add('adres--hide');
+    tel[0].classList.remove('phone--hide');
+    tel[1].classList.add('phone--hide');
+    tel[2].classList.remove('phone--hide');
+    tel[3].classList.add('phone--hide');
+    tel[4].classList.remove('phone--hide');
+    tel[5].classList.add('phone--hide');
+    map[0].classList.remove('iframe--hide');
+    map[1].classList.add('iframe--hide');
+    sity.innerHTML='Ваш город: Астрахань';
+  }
+
+  function changeCityController () {
+    const geo = document.querySelector('.header-form__select');
+
+    const selind = geo.options.selectedIndex;
+    const val = geo.options[selind].value;
+
+    if (val === 'Astrakhan') {
+      localStorage.setItem( 'city', 'Astrakhan');
+      dispatch(changeCity('Astrakhan'))
+      geo.value = 'Astrakhan';
+      changeAstrakhan();
+      return;
+    };
+
+    if (val === 'Atirau') {
+      localStorage.setItem( 'city', 'Atirau');
+      dispatch(changeCity('Atirau'))
+      geo.value = 'Atirau';
+      changeAtirau()
+      return;
+    };
+}
+
+  useEffect( () => {
+    const city = localStorage.getItem('city');
+    if (city && city !== 'Astrakhan') setTown(prev => prev = city)
+  }, [])
 
   useEffect( () => {
       const geo = document.querySelector('.header-form__select');
-      const adress = document.querySelectorAll('.adres');
-      const tel = document.querySelectorAll('.phone');
-      const map = document.querySelectorAll('.iframe');
-      const sity = document.querySelector('.footer-info__sity');
-    
-      geo.addEventListener('change', () => {
-    
-        const selind = geo.options.selectedIndex;
-        const txt = geo.options[selind].text;
-        const val = geo.options[selind].value;
-    
-        if (val === 'Astrakhan') {
-    
-          adress[0].classList.remove('adres--hide');
-          adress[1].classList.add('adres--hide');
-          adress[2].classList.remove('adres--hide');
-          adress[3].classList.add('adres--hide');
-          tel[0].classList.remove('phone--hide');
-          tel[1].classList.add('phone--hide');
-          tel[2].classList.remove('phone--hide');
-          tel[3].classList.add('phone--hide');
-          tel[4].classList.remove('phone--hide');
-          tel[5].classList.add('phone--hide');
-          map[0].classList.remove('iframe--hide');
-          map[1].classList.add('iframe--hide');
-          sity.innerHTML='Ваш город: Астрахань';
 
-        };
-    
-        if (val === 'Atirau') {
-    
-          adress[0].classList.add('adres--hide');
-          adress[1].classList.remove('adres--hide');
-          adress[2].classList.add('adres--hide');
-          adress[3].classList.remove('adres--hide');
-          tel[0].classList.add('phone--hide');
-          tel[1].classList.remove('phone--hide');
-          tel[2].classList.add('phone--hide');
-          tel[3].classList.remove('phone--hide');
-          tel[4].classList.add('phone--hide');
-          tel[5].classList.remove('phone--hide');
-          map[0].classList.add('iframe--hide');
-          map[1].classList.remove('iframe--hide');
-          sity.innerHTML='Ваш город: Атырау';
-          
-        };
-      });
+      geo.addEventListener('change', changeCityController)
 
       $(document).ready(()=> {
         $('.page-nav__btn').click(function(){
@@ -64,6 +97,39 @@ export default function Header () {
     });
     
   }, [])
+
+  useEffect ( () => {
+    const findAtirau = router.asPath.includes('Atirau');
+    const geo = document.querySelector('.header-form__select');
+
+    if (findAtirau) {
+      changeAtirau()
+      geo.value = 'Atirau';
+      setTown( prev => prev = 'Atirau')
+      localStorage.setItem('city', 'Atirau')
+      dispatch(changeCity('Atirau'))
+
+    } else {
+      changeAstrakhan()
+      geo.value = 'Astrakhan';
+      setTown( prev => prev = 'Astrakhan')
+      dispatch(changeCity('Astrakhan'))
+      localStorage.setItem('city', 'Astrakhan')
+    }
+
+    }, [])
+
+
+  function ChangeCitySelect(e) {
+    const city = e.target.value;
+
+    if (city === 'Astrakhan') {
+      const url = router.asPath.replace(/\/Atirau/, '') || '/'
+      router.push(`${url}`)
+    }
+
+    if (city === 'Atirau') {router.push(`/Atirau${router.asPath}`)}
+  }
 
   return (
     <header className='page-header page-header--height-auto'>
@@ -75,7 +141,7 @@ export default function Header () {
 
           <form className='header-form'>
             <label className='header-form__label' htmlFor='sity'>Ваш город</label>
-            <select className='header-form__select' name='sity' id='sity'>
+            <select onChange={ChangeCitySelect} className='header-form__select' name='sity' id='sity'>
               <option className='header-form__option' value='Astrakhan'>Астрахань</option>
               <option className='header-form__option' value='Atirau'>Атырау</option>
             </select>
@@ -119,12 +185,26 @@ export default function Header () {
         <button className='page-nav__btn' type='button'>Меню</button>
         <div className='menu-top-menu-container'>
           <ul id='menu-top-menu' className='page-nav__list container'>
-            <Link href='/'><li id='menu-item-27' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-27'><a href='/' aria-current='page'>Главная</a></li></Link>
-            <Link href='/glazing'><li id='menu-item-49' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-49'><a href='/'>Остекление</a></li></Link>
-            <Link href='/wood-windows'><li id='menu-item-29' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-29'><a href='/'>Деревянные окна</a></li></Link>
-            <Link href='/plastic-windows'><li id='menu-item-31' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-31'><a href='/'>Пластиковые окна</a></li></Link>
-            <Link href='/aluminum-construction'><li id='menu-item-28' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-28'><a href='/'>Алюминиевые конструкции</a></li></Link>
-            <Link href='/jalousie'><li id='menu-item-30' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-30'><a href='/'>Жалюзи/Рольшторы</a></li></Link>
+            {town === 'Astrakhan' ? (
+              <>
+                <Link href='/'><li id='menu-item-27' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-27'><a href='/' aria-current='page'>Главная</a></li></Link>
+                <Link href='/glazing'><li id='menu-item-49' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-49'><a href='/'>Остекление</a></li></Link>
+                <Link href='/wood-windows'><li id='menu-item-29' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-29'><a href='/'>Деревянные окна</a></li></Link>
+                <Link href='/plastic-windows'><li id='menu-item-31' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-31'><a href='/'>Пластиковые окна</a></li></Link>
+                <Link href='/aluminum-construction'><li id='menu-item-28' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-28'><a href='/'>Алюминиевые конструкции</a></li></Link>
+                <Link href='/jalousie'><li id='menu-item-30' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-30'><a href='/'>Жалюзи/Рольшторы</a></li></Link>
+              </>
+        )
+            : (
+              <>
+                <Link href='/Atirau'><li id='menu-item-27' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-27'><a href='/' aria-current='page'>Главная</a></li></Link>
+                <Link href='/Atirau/glazing'><li id='menu-item-49' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-49'><a href='/'>Остекление</a></li></Link>
+                <Link href='/Atirau/wood-windows'><li id='menu-item-29' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-29'><a href='/'>Деревянные окна</a></li></Link>
+                <Link href='/Atirau/plastic-windows'><li id='menu-item-31' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-31'><a href='/'>Пластиковые окна</a></li></Link>
+                <Link href='/Atirau/aluminum-construction'><li id='menu-item-28' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-28'><a href='/'>Алюминиевые конструкции</a></li></Link>
+                <Link href='/Atirau/jalousie'><li id='menu-item-30' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-30'><a href='/'>Жалюзи/Рольшторы</a></li></Link>
+              </>
+            )}
           </ul>
         </div>		
       </nav>	

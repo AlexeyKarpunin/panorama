@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 export default function Footer () {
+  const city = useSelector( state => state.city.city);
+
   return (
     <footer className='footer'>
       <div className='footer__content'>
@@ -16,11 +19,24 @@ export default function Footer () {
           <nav className='footer-menu'>			
             <div className='menu-footer-menu-container'>
               <ul id='menu-footer-menu' className='footer-menu__list'>
-                <Link href='/wood-windows'><li id='menu-item-37' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-37'><a href='/'>Деревянные окна</a></li></Link>  
-                <Link href='/plastic-windows'><li id='menu-item-36' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-36'><a href='/'>Пластиковые окна</a></li></Link> 
-                <Link href='/aluminum-construction'><li id='menu-item-35' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-35'><a href='/'>Алюминиевые конструкции</a></li></Link> 
-                <Link href='/jalousie'><li id='menu-item-34' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-34'><a href='/'>Жалюзи/Рольшторы</a></li></Link> 
-                <Link href='/glazing'><li id='menu-item-51' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-51'><a href='/'>Остекление</a></li></Link> 
+                {city === 'Astrakhan' ? (
+                  <>
+                    <Link href='/wood-windows'><li id='menu-item-37' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-37'><a href='/'>Деревянные окна</a></li></Link>  
+                    <Link href='/plastic-windows'><li id='menu-item-36' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-36'><a href='/'>Пластиковые окна</a></li></Link> 
+                    <Link href='/aluminum-construction'><li id='menu-item-35' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-35'><a href='/'>Алюминиевые конструкции</a></li></Link> 
+                    <Link href='/jalousie'><li id='menu-item-34' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-34'><a href='/'>Жалюзи/Рольшторы</a></li></Link> 
+                    <Link href='/glazing'><li id='menu-item-51' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-51'><a href='/'>Остекление</a></li></Link> 
+                  </>
+               )
+                : (
+                  <>
+                    <Link href='/Atirau/wood-windows'><li id='menu-item-37' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-37'><a href='/'>Деревянные окна</a></li></Link>  
+                    <Link href='/Atirau/plastic-windows'><li id='menu-item-36' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-36'><a href='/'>Пластиковые окна</a></li></Link> 
+                    <Link href='/Atirau/aluminum-construction'><li id='menu-item-35' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-35'><a href='/'>Алюминиевые конструкции</a></li></Link> 
+                    <Link href='/Atirau/jalousie'><li id='menu-item-34' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-34'><a href='/'>Жалюзи/Рольшторы</a></li></Link> 
+                    <Link href='/Atirau/glazing'><li id='menu-item-51' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-51'><a href='/'>Остекление</a></li></Link> 
+                  </>
+                )}
               </ul>
             </div>			
           </nav>

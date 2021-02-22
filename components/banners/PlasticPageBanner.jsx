@@ -1,4 +1,8 @@
+import { useSelector } from 'react-redux';
+
 export default function PlasticBanner () {
+  const city = useSelector( state => state.city.city);
+
   return (
     <section className='banner banner--new banner--plastic' data-page="Страница 'Пластиковые окна'">
       <div className='banner__content'>
@@ -10,7 +14,7 @@ export default function PlasticBanner () {
             от «Панорамы»
           </span>
           {' '}
-          в Астрахани
+          в {city === 'Astrakhan' ? 'Астрахани' : 'Атырау'}
         </h1>
         <ul className='banner__list'>
           <li>

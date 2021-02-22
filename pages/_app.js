@@ -4,8 +4,11 @@ import '../styles/styles.css';
 import '../styles/libs.min.css';
 import '../styles/style.min.css';
 
+import { Provider } from 'react-redux';
+
 import $ from 'jquery';
 import { useEffect } from 'react';
+import store from '../redux/store';
 
 function MyApp({ Component, pageProps }) {
 
@@ -40,7 +43,11 @@ function MyApp({ Component, pageProps }) {
   
   }, [Component])
 
-  return <Component {...pageProps} />
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  )
 }
 
 export default MyApp
