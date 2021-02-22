@@ -172,6 +172,15 @@ body {
   cursor: pointer;
 }
 
+.header-form__select--footer {
+  color: #FFFFFF;
+  background: #413f3f;
+}
+
+.header-form__select--footer:hover {
+  cursor: pointer;
+}
+
 .modal__window__reviews {
   display: none;
   /* width: 600px; */

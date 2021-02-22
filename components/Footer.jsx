@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
+import SelectorCities from './SelectorCities';
 
 export default function Footer () {
   const city = useSelector( state => state.city.city);
@@ -50,7 +51,11 @@ export default function Footer () {
         </div>
         <div className='footer__info footer-info'>
           <p>Политика конфиденциальности</p>
-          <p className='footer-info__sity'>Ваш город: Астрахань</p>
+          <p className='footer-info__sity'>
+            Ваш город: 
+            {' '}
+            <SelectorCities classN='header-form__select--footer' name='sity' id='sity' />
+          </p>
           <a className='footer-info__email' href='mailto:okna@panorama30.ru'>okna@panorama30.ru</a>
           <p className='phone'>
             <a className='phone__number phone__number1' href='tel:89275540236'>+7(927) 554 02 36</a>

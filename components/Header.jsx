@@ -5,131 +5,23 @@ import Link from 'next/link';
 import $ from 'jquery';
 import { useDispatch, useSelector } from 'react-redux';
 import {changeCity} from '../redux/actions';
-
-
+import {changeAstrakhan, changeAtirau} from './changeCity';
+import SelectorCities from './SelectorCities';
 
 export default function Header () {
   const router = useRouter();
   const city = useSelector( state => state.city.city);
   const dispatch = useDispatch();
-  const [town, setTown] = useState('Astrakhan');
-
-  function changeAtirau () {
-    const adress = document.querySelectorAll('.adres');
-    const tel = document.querySelectorAll('.phone');
-    const map = document.querySelectorAll('.iframe');
-    const sity = document.querySelector('.footer-info__sity');
-
-    adress[0].classList.add('adres--hide');
-    adress[1].classList.remove('adres--hide');
-    adress[2].classList.add('adres--hide');
-    adress[3].classList.remove('adres--hide');
-    tel[0].classList.add('phone--hide');
-    tel[1].classList.remove('phone--hide');
-    tel[2].classList.add('phone--hide');
-    tel[3].classList.remove('phone--hide');
-    tel[4].classList.add('phone--hide');
-    tel[5].classList.remove('phone--hide');
-    map[0].classList.add('iframe--hide');
-    map[1].classList.remove('iframe--hide');
-    sity.innerHTML='Ваш город: Атырау';
-  }
-
-  function changeAstrakhan () {
-    const adress = document.querySelectorAll('.adres');
-    const tel = document.querySelectorAll('.phone');
-    const map = document.querySelectorAll('.iframe');
-    const sity = document.querySelector('.footer-info__sity');
-    
-    adress[0].classList.remove('adres--hide');
-    adress[1].classList.add('adres--hide');
-    adress[2].classList.remove('adres--hide');
-    adress[3].classList.add('adres--hide');
-    tel[0].classList.remove('phone--hide');
-    tel[1].classList.add('phone--hide');
-    tel[2].classList.remove('phone--hide');
-    tel[3].classList.add('phone--hide');
-    tel[4].classList.remove('phone--hide');
-    tel[5].classList.add('phone--hide');
-    map[0].classList.remove('iframe--hide');
-    map[1].classList.add('iframe--hide');
-    sity.innerHTML='Ваш город: Астрахань';
-  }
-
-  function changeCityController () {
-    const geo = document.querySelector('.header-form__select');
-
-    const selind = geo.options.selectedIndex;
-    const val = geo.options[selind].value;
-
-    if (val === 'Astrakhan') {
-      localStorage.setItem( 'city', 'Astrakhan');
-      dispatch(changeCity('Astrakhan'))
-      geo.value = 'Astrakhan';
-      changeAstrakhan();
-      return;
-    };
-
-    if (val === 'Atirau') {
-      localStorage.setItem( 'city', 'Atirau');
-      dispatch(changeCity('Atirau'))
-      geo.value = 'Atirau';
-      changeAtirau()
-      return;
-    };
-}
 
   useEffect( () => {
-    const city = localStorage.getItem('city');
-    if (city && city !== 'Astrakhan') setTown(prev => prev = city)
-  }, [])
-
-  useEffect( () => {
-      const geo = document.querySelector('.header-form__select');
-
-      geo.addEventListener('change', changeCityController)
-
       $(document).ready(()=> {
         $('.page-nav__btn').click(function(){
             $('#menu-top-menu').slideToggle('slow');
             $(this).toggleClass('active');
         });
     });
-    
   }, [])
 
-  useEffect ( () => {
-    const findAtirau = router.asPath.includes('Atirau');
-    const geo = document.querySelector('.header-form__select');
-
-    if (findAtirau) {
-      changeAtirau()
-      geo.value = 'Atirau';
-      setTown( prev => prev = 'Atirau')
-      localStorage.setItem('city', 'Atirau')
-      dispatch(changeCity('Atirau'))
-
-    } else {
-      changeAstrakhan()
-      geo.value = 'Astrakhan';
-      setTown( prev => prev = 'Astrakhan')
-      dispatch(changeCity('Astrakhan'))
-      localStorage.setItem('city', 'Astrakhan')
-    }
-
-    }, [])
-
-
-  function ChangeCitySelect(e) {
-    const city = e.target.value;
-
-    if (city === 'Astrakhan') {
-      const url = router.asPath.replace(/\/Atirau/, '') || '/'
-      router.push(`${url}`)
-    }
-
-    if (city === 'Atirau') {router.push(`/Atirau${router.asPath}`)}
-  }
 
   return (
     <header className='page-header page-header--height-auto'>
@@ -141,10 +33,7 @@ export default function Header () {
 
           <form className='header-form'>
             <label className='header-form__label' htmlFor='sity'>Ваш город</label>
-            <select onChange={ChangeCitySelect} className='header-form__select' name='sity' id='sity'>
-              <option className='header-form__option' value='Astrakhan'>Астрахань</option>
-              <option className='header-form__option' value='Atirau'>Атырау</option>
-            </select>
+            <SelectorCities classN='header-form__select' name='sity' id='sity' />
           </form>
 
           <p className='adres'>Ул. Н. Островского, д. 115, к. 1</p>
@@ -185,7 +74,7 @@ export default function Header () {
         <button className='page-nav__btn' type='button'>Меню</button>
         <div className='menu-top-menu-container'>
           <ul id='menu-top-menu' className='page-nav__list container'>
-            {town === 'Astrakhan' ? (
+            {city === 'Astrakhan' ? (
               <>
                 <Link href='/'><li id='menu-item-27' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-14 current_page_item menu-item-27'><a href='/' aria-current='page'>Главная</a></li></Link>
                 <Link href='/glazing'><li id='menu-item-49' className='menu-item menu-item-type-post_type menu-item-object-page menu-item-49'><a href='/'>Остекление</a></li></Link>
